@@ -15,9 +15,11 @@ public class FirstTest {
     }
 
     @Test
-    public void navigateTest(){
+    public void navigateTest() {
 
-        driver.get("http://google.pl");
+        driver.navigate().to("http://google.pl");
+        driver.navigate().to("http://amazon.com");
+        driver.navigate().back();
     }
 
     @BeforeEach
