@@ -20,6 +20,8 @@ public class FirstTest {
         driver.navigate().to("http://google.pl");
         driver.navigate().to("http://amazon.com");
         driver.navigate().back();
+        driver.navigate().forward();
+        driver.navigate().refresh();
     }
 
     @BeforeEach
