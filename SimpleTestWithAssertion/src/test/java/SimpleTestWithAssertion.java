@@ -23,13 +23,13 @@ public class SimpleTestWithAssertion {
         driver.navigate().to("http://nasa.gov");
         driver.navigate().back();
 
-        String pageTitle = driver.getTitle();
-        Assertions.assertEquals("Wikipedia, wolna encyklopedia", pageTitle);
+        String wikiPageTitle = "Wikipedia, wolna encyklopedia";
+        Assertions.assertEquals(wikiPageTitle, driver.getTitle(), "The title of the page is not " + wikiPageTitle);
 
         driver.navigate().forward();
 
-        pageTitle = driver.getTitle();
-        Assertions.assertEquals("NASA", pageTitle);
+        String nasaPageTitle = "NASA";
+        Assertions.assertEquals(nasaPageTitle, driver.getTitle(), "The title of the page is not " + nasaPageTitle);
 
     }
 
@@ -42,5 +42,6 @@ public class SimpleTestWithAssertion {
     @AfterEach
     public void cleanAfterTest(){
         driver.close();
+        driver.quit();
     }
 }
