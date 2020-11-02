@@ -28,6 +28,18 @@ public class SimpleTestWithAssertion {
 
     }
 
+    @Test
+    void shouldReturnSameURL4adressWithoutWWW() {
+        //given
+        String onetURL = "https://www.onet.pl/";
+
+        //when
+        driver.navigate().to("https://onet.pl");
+
+        //then
+        Assertions.assertEquals(onetURL, driver.getCurrentUrl(), "Current URL is not: " + onetURL);
+    }
+
     @BeforeEach
     public void driverSetup(){
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
