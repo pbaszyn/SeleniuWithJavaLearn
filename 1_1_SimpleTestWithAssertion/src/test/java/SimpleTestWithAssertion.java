@@ -40,6 +40,18 @@ public class SimpleTestWithAssertion {
         Assertions.assertEquals(onetURL, driver.getCurrentUrl(), "Current URL is not: " + onetURL);
     }
 
+    @Test
+    void shouldReturnCorrectPageTitle() {
+        //given
+        String wpTitle = "Wirtualna Polska - Wszystko co ważne - www.wp.pl";
+
+        //when
+        driver.navigate().to("https://www.wp.pl");
+
+        //then
+        Assertions.assertEquals(wpTitle, driver.getTitle(), "Current title is not: " + wpTitle);
+    }
+
     @BeforeEach
     public void driverSetup(){
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
