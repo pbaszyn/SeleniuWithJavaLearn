@@ -52,6 +52,18 @@ public class SimpleTestWithAssertion {
         Assertions.assertEquals(wpTitle, driver.getTitle(), "Current title is not: " + wpTitle);
     }
 
+    @Test
+    void shouldFindPictureULRinPageSource() {
+        //given
+        String picURL = "/static/images/footer/wikimedia-button.png";
+
+        //when
+        driver.navigate().to("https://pl.wikipedia.org/");
+
+        //then
+        Assertions.assertTrue(driver.getPageSource().contains(picURL), "Picture not found in page source - pic URL: " +picURL);
+    }
+
     @BeforeEach
     public void driverSetup(){
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
