@@ -10,14 +10,9 @@ import javax.swing.*;
 public class SimpleTestWithAssertion {
     private WebDriver driver;
 
-    @Test
-    public void getTest(){
-
-        driver.get("http://google.pl");
-    }
 
     @Test
-    public void TitleAssertionTest() {
+    public void TitleAssertionTestWithSomeNavigation() {
 
         driver.navigate().to("http://wikipedia.pl");
         driver.navigate().to("http://nasa.gov");
