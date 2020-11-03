@@ -2,6 +2,7 @@ import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 
@@ -32,6 +33,7 @@ public class PageTitleSourceURLTest {
         String PolishPageSourceLanguage = "<html class=\"client-js ve-available\" lang=\"pl\" dir=\"ltr\">";
 
         String SpanishPageTitle = "Wikipedia, la enciclopedia libre";
+        String SpanishPageCSSSelector = "a[title='hiszpański']";
         String SpanishPageURL = "https://es.wikipedia.org/wiki/Wikipedia:Portada";
         String SpanishPageSourceLanguage = "<html class=\"client-js ve-not-available\" lang=\"es\" dir=\"ltr\">";
 
@@ -42,6 +44,15 @@ public class PageTitleSourceURLTest {
         Assertions.assertEquals(PolishPageTitle, WebPageDriver.getTitle(), "Page title doesn't match to:" + PolishPageTitle);
         Assertions.assertEquals(PolishPageURL, WebPageDriver.getCurrentUrl(), "Page URL doesn't match to:" + PolishPageURL);
         Assertions.assertTrue(WebPageDriver.getPageSource().contains(PolishPageSourceLanguage), "Page Source doesn't contain correct language info: " +PolishPageSourceLanguage);
+
+        //when
+        WebPageDriver.findElement(new By.ByCssSelector(SpanishPageCSSSelector)).click();
+
+        //then
+        Assertions.assertEquals(SpanishPageTitle, WebPageDriver.getTitle(), "Page title doesn't match to:" + SpanishPageTitle);
+        Assertions.assertEquals(SpanishPageURL, WebPageDriver.getCurrentUrl(), "Page URL doesn't match to:" + SpanishPageURL);
+        Assertions.assertTrue(WebPageDriver.getPageSource().contains(SpanishPageSourceLanguage), "Page Source doesn't contain correct language info: " +SpanishPageSourceLanguage);
+
 
     }
 
