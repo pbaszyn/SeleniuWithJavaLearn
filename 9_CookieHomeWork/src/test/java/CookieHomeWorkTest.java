@@ -14,14 +14,13 @@ public class CookieHomeWorkTest {
     private String WikiPageURL = "https://pl.wikipedia.org/";
 
     @Test
-    public void shouldReturnCorrectNumberAfterPageLoad() {
+    public void shouldReturnCorrectNumberOfCookiesAfterPageLoad() {
         //given
         int ExpectedCookiesNumber = 4;
 
         //when
-        WebPageDriver.navigate().to(WikiPageURL);
-        Set<Cookie> TestPageCookies = WebPageDriver.manage().getCookies();
         waitOneSecond();
+        Set<Cookie> TestPageCookies = WebPageDriver.manage().getCookies();
 
         //then
         Assertions.assertEquals(ExpectedCookiesNumber, TestPageCookies.size());
@@ -30,16 +29,21 @@ public class CookieHomeWorkTest {
     @Test
     void shouldReturnTrueIfTestCookieWasAddedToTestPage() {
         //given
+        String TestCookieName = "test_cookie";
+        Cookie TestCookie = new Cookie(TestCookieName, "test_value");
 
         //when
+        WebPageDriver.manage().addCookie(TestCookie);
 
         //then
+        Assertions.assertNotNull(WebPageDriver.manage().getCookieNamed(TestCookieName));
     }
 
     @BeforeEach
     public void WebPageDriverSetup(){
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
         WebPageDriver = new ChromeDriver();
+        WebPageDriver.navigate().to(WikiPageURL);
     }
 
     @AfterEach
