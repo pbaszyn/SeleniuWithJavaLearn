@@ -39,6 +39,20 @@ public class CookieHomeWorkTest {
         Assertions.assertNotNull(WebPageDriver.manage().getCookieNamed(TestCookieName));
     }
 
+    @Test
+    void shouldReturnNullAfterDeletionOfCustomCookie() {
+        //given
+        String TestCookieName = "test_cookie";
+        Cookie TestCookie = new Cookie(TestCookieName, "test_value");
+
+        //when
+        WebPageDriver.manage().addCookie(TestCookie);
+        WebPageDriver.manage().deleteCookieNamed(TestCookieName);
+
+        //then
+        Assertions.assertNull(WebPageDriver.manage().getCookieNamed(TestCookieName));
+    }
+
     @BeforeEach
     public void WebPageDriverSetup(){
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
