@@ -53,6 +53,24 @@ public class CookieHomeWorkTest {
         Assertions.assertNull(WebPageDriver.manage().getCookieNamed(TestCookieName));
     }
 
+    @Test
+    void shouldReturnCookieWithCorrectParameters() {
+        //given
+        String NameOfCookieToTest = "GeoIP";
+        String CorrectDomainOfTestedCookie = ".wikipedia.org";
+        String CorrectPathOfTestedCookie = "/";
+        Boolean CorrectValueOfTestedCookieHTTPFlag = false;
+
+        //when
+        Cookie CookieToTest = WebPageDriver.manage().getCookieNamed(NameOfCookieToTest);
+
+        //then
+        Assertions.assertEquals(CorrectDomainOfTestedCookie, CookieToTest.getDomain());
+        Assertions.assertEquals(CorrectPathOfTestedCookie, CookieToTest.getPath());
+        Assertions.assertEquals(CorrectValueOfTestedCookieHTTPFlag, CookieToTest.isHttpOnly());
+
+    }
+
     @BeforeEach
     public void WebPageDriverSetup(){
         System.setProperty("webdriver.chrome.driver", "src/main/resources/chromedriver.exe");
